@@ -140,10 +140,11 @@ def process_markdown(text: str) -> str:
             processed_lines.append(line)
             continue
         
-        # Skip empty lines, headers, and indented code blocks
+        # Skip empty lines, headers, numbered lists, and indented code blocks
         if (not line.strip() or 
             line.strip().startswith('#') or
-            line.strip().startswith('    ')):  # Code blocks with indentation
+            line.strip().startswith('    ') or  # Code blocks with indentation
+            re.match(r'^\s*\d+\.\s', line)):  # Numbered lists
             processed_lines.append(line)
             continue
         

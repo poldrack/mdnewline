@@ -104,3 +104,14 @@ This is more text.\nThis is the final sentence."""
         expected = 'He said "Hello world." to everyone.\nShe replied "How are you?" back.\nThis is sentence three.\nThis is sentence four.\nThis is sentence five.'
         result = process_markdown(input_text)
         assert result == expected
+
+    def test_numbered_lists_unchanged(self):
+        """Test that numbered markdown lists remain unchanged."""
+        input_text = """1. This is the first item in the list. It has multiple sentences.
+2. This is the second item. It also has multiple sentences.
+3. This is the third item. It continues the pattern."""
+        expected = """1. This is the first item in the list. It has multiple sentences.
+2. This is the second item. It also has multiple sentences.
+3. This is the third item. It continues the pattern."""
+        result = process_markdown(input_text)
+        assert result == expected
