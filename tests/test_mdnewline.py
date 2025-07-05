@@ -115,3 +115,27 @@ This is more text.\nThis is the final sentence."""
 3. This is the third item. It continues the pattern."""
         result = process_markdown(input_text)
         assert result == expected
+
+    def test_bullet_lists_unchanged(self):
+        """Test that bullet markdown lists remain unchanged."""
+        input_text = """- This is the first item in the list. It has multiple sentences.
+- This is the second item. It also has multiple sentences.
+* This is the third item. It continues the pattern."""
+        expected = """- This is the first item in the list. It has multiple sentences.
+- This is the second item. It also has multiple sentences.
+* This is the third item. It continues the pattern."""
+        result = process_markdown(input_text)
+        assert result == expected
+
+    def test_indented_lists_unchanged(self):
+        """Test that indented markdown lists remain unchanged."""
+        input_text = """- Main item one. It has multiple sentences.
+    - Indented item one. It also has multiple sentences.
+    - Indented item two. It continues the pattern.
+- Main item two. Back to main level."""
+        expected = """- Main item one. It has multiple sentences.
+    - Indented item one. It also has multiple sentences.
+    - Indented item two. It continues the pattern.
+- Main item two. Back to main level."""
+        result = process_markdown(input_text)
+        assert result == expected
