@@ -27,6 +27,9 @@ jobs:
       - name: Install the project
         run: uv sync --all-extras --dev
 
+      - name: pip install the package
+        run: uv pip install .
+        
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest tests
