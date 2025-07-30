@@ -1,3 +1,5 @@
+[![Python package](https://github.com/poldrack/mdnewline/actions/workflows/python-package.yml/badge.svg)](https://github.com/poldrack/mdnewline/actions/workflows/python-package.yml)
+
 This is a simple command line tool with one purpose: It takes a markdown file that has been written with 
 each paragraph on a single line (i.e. no newlines between sentences) and returns a the same file with
 newlines added between each sentence.  The use case is when one generates text for uploading to a 
