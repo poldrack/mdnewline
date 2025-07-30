@@ -139,3 +139,31 @@ This is more text.\nThis is the final sentence."""
 - Main item two. Back to main level."""
         result = process_markdown(input_text)
         assert result == expected
+
+    def test_footnotes_unchanged(self):
+        """Test that markdown footnotes remain unchanged."""
+        input_text = """This is a sentence with a footnote[^1]. This is another sentence.
+
+[^1]: This is a footnote. It has multiple sentences. They should not be processed."""
+        expected = """This is a sentence with a footnote[^1].\nThis is another sentence.
+
+[^1]: This is a footnote. It has multiple sentences. They should not be processed."""
+        result = process_markdown(input_text)
+        assert result == expected
+
+    def test_footnotes_mixed_with_regular_text(self):
+        """Test footnotes mixed with regular text."""
+        input_text = """This is regular text. It has two sentences.
+
+[^note1]: This is footnote one. It has multiple sentences. They should not be split.
+[^note2]: This is footnote two. It also has multiple sentences. They should remain intact.
+
+This is more regular text. It should be processed normally."""
+        expected = """This is regular text.\nIt has two sentences.
+
+[^note1]: This is footnote one. It has multiple sentences. They should not be split.
+[^note2]: This is footnote two. It also has multiple sentences. They should remain intact.
+
+This is more regular text.\nIt should be processed normally."""
+        result = process_markdown(input_text)
+        assert result == expected
